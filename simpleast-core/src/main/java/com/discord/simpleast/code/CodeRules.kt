@@ -253,6 +253,7 @@ object CodeRules {
         "ts" to typescriptRules,
         "typescript" to typescriptRules,
 
+        "patch" to diffRules
         "diff" to diffRules
     )
   }
