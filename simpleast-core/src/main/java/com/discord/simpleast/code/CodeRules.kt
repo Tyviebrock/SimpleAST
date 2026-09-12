@@ -237,11 +237,11 @@ object CodeRules {
     )
 
     val diffRules = listOf<Rule<R, Node<R>, S>>(
+    	  Pattern.compile("""^(?:Index: .*|index.*|={3,}.*|[-+]{3}.*|\*{3} .*|diff --git.*|\*{15}$)""")
+            .toLineStartMatchGroupRule(stylesProvider = codeStyleProviders.commentStyleProvider),
         Pattern.compile("""^-.*""")
             .toLineStartMatchGroupRule(stylesProvider = codeStyleProviders.deletionStyleProvider),
-        Pattern.compile("""^\+.*""")
-            .toLineStartMatchGroupRule(stylesProvider = codeStyleProviders.additionStyleProvider),
-        Pattern.compile("""^!.*""")
+        Pattern.compile("""^[\+!].*""")
             .toLineStartMatchGroupRule(stylesProvider = codeStyleProviders.additionStyleProvider),
         PATTERN_LEADING_WS_CONSUMER.toMatchGroupRule(),
         PATTERN_TEXT.toMatchGroupRule()
